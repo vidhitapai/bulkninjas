@@ -1,13 +1,21 @@
+// Importing modules
 const express = require("express");
+const db = require("./connection.js");
 
-const PORT = process.env.PORT || 8001;
-
+// Initialising express app
 const app = express();
 
+// Setting the port
+const PORT = process.env.PORT || 8001;
 
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
-});
+// Importing routes
+const buyerRouter = require("./routes/buyerRoutes");
+
+// Formatting incoming data
+app.use(express.json());
+
+// Routes
+app.use("/buyer", buyerRouter);
 
 // Starting the server
 app.listen(PORT, () => {
