@@ -1,5 +1,5 @@
 // Importing modules
-const Buyer = require("../model/buyermodel.js");
+const Buyer = require("../model/buyer.js");
 const { generateOTP, sendSMS } = require("../utility/otp.js");
 
 // Creating a new user
