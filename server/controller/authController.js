@@ -1,14 +1,14 @@
-const Buyer = require("../models/buyer.js");
+// Importing modules
+const Buyer = require("../model/buyermodel.js");
 const { generateOTP, sendSMS } = require("../utility/otp.js");
 
 // Creating a new user
 const createNewBuyer = async (req, res) => {
     try {
-        let { name, phone } = req.body;
+        let { name, email, phone } = req.body;
         
         // Checking if phone number and email id already exits
         const phoneExists = await Buyer.findOne({ phone });
-        const emailExists = await Buyer.findOne({ email });
         if (phoneExists) {
             res.status(400).json({
                 message: "Phone number already registered"
@@ -18,8 +18,8 @@ const createNewBuyer = async (req, res) => {
 
         const newBuyer = new Buyer({
             name,
-            phone,
-            email
+            email,
+            phone
         });
         
         // Saving buyer details in database
@@ -32,10 +32,9 @@ const createNewBuyer = async (req, res) => {
         
         // Sending the otp through sms
         await sendSMS({
-            message: "Your OTP for registration is ${otp}",
+            message: `Your OTP for registration is ${otp}`,
             contactNumber: buyer.phone
         });
-
 
         // Sending a response back
         res.status(200).json({
@@ -46,7 +45,7 @@ const createNewBuyer = async (req, res) => {
         });
     } catch(error) {
         res.status(400).json({
-            message: "Registration unsuccessful"
+            message: error.message
         });
     }
 }

@@ -10,6 +10,7 @@ const buyerSchema =  new mongoose.Schema(
             required: true,
             trim: true
         },
+
         email: {
             type: String,
             required: true,
@@ -22,6 +23,7 @@ const buyerSchema =  new mongoose.Schema(
                 }
             }
         },
+
         phone: {
             type: String,
             required: true,
@@ -30,10 +32,12 @@ const buyerSchema =  new mongoose.Schema(
             maxlength: [10, "Invalid phone number"],
             minlength: [10, "Invalid phone number"]
         },
+
         phoneOTP: {
             type: String
-        },
+        }
     },
+
     { timestamps: true }
 );
 

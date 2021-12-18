@@ -1,7 +1,9 @@
+// Importing modules
 const res = require("express/lib/response");
 const fast2sms = require("fast-two-sms");
 const dotenv = require('dotenv').config();
 
+// Generating OTP
 const generateOTP = (otpLength) => {
     let digits = "0123456789";
     let OTP = "";
@@ -11,6 +13,7 @@ const generateOTP = (otpLength) => {
     return OTP;
 };
 
+// Sending OTP via SMS
 const sendSMS = async ({ message, contactNumber }) => {
     try {
         const res = await fast2sms.sendMessage({
@@ -27,6 +30,7 @@ const sendSMS = async ({ message, contactNumber }) => {
     }
 };
 
+// Exporting modules
 module.exports = {
     generateOTP,
     sendSMS
