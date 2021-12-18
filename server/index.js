@@ -9,7 +9,7 @@ app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
 });
 
-
+// Starting the server
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
