@@ -4,7 +4,9 @@ const router = express.Router();
 const { 
     createNewUser,
     verifyPhoneOTP,
-    verifyEmailOTP
+    verifyEmailOTP,
+    userLogin,
+    verifyUserLogin
 } = require("../controller/authController.js");
 
 // Route to register a new user
@@ -15,6 +17,12 @@ router.post("/authenticate/phoneotp", verifyPhoneOTP);
 
 // Route to authenticate email OTP
 router.post("/authenticate/emailotp", verifyEmailOTP);
+
+//Route to login user
+router.post("/login", userLogin);
+
+//Route to verify user login
+router.post("/verifylogin", verifyUserLogin);
 
 // Exporting modules
 module.exports = router;
