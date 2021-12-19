@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-      trim: true,
+      trim: true
     },
 
     email: {
@@ -21,22 +21,41 @@ const userSchema = new mongoose.Schema(
         if (!validate.isEmail(value)) {
           throw new Error("Invalid email");
         }
-      },
+      }
     },
+
     phone: {
       type: String,
       required: true,
       trim: true,
       unique: true,
       maxlength: [10, "Invalid phone number"],
-      minlength: [10, "Invalid phone number"],
+      minlength: [10, "Invalid phone number"]
+    },
+
+    role: {
+      type: String,
+      enum: ["BUYER", "SUPPLIER"],
+      default: "BUYER"
     },
 
     phoneOTP: {
-      type: String,
+      type: String
     },
+
     emailOTP: {
+      type: String
+    },
+
+    address: {
       type: String,
+      maxlength: [300, "Exceeded character limit"]
+    },
+
+    gstin: {
+      type: String,
+      maxLength: [15, "Number too long"],
+      minLength: [15, "Number too short"]
     }
   },
   { timestamps: true }
