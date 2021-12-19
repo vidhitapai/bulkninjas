@@ -20,8 +20,7 @@ const productSchema = new mongoose.Schema(
         },
 
         picture: {
-            type: Buffer,
-            required: true
+            type: Buffer
         },
 
         totalQuantity: {
