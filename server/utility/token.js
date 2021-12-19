@@ -11,8 +11,8 @@ const generateJWT = (payload) => {
 // Verify JWT Token
 const verifyJWT = (token) => {
     try {
-        const { buyerID } = jwt.verify(token, process.env.JWT_SECRET);
-        return buyerID;
+        const { userID } = jwt.verify(token, process.env.JWT_SECRET);
+        return userID;
     } catch (error) {
         res.status(400).json({
             message: error.message

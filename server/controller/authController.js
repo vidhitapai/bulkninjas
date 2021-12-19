@@ -1,16 +1,16 @@
 // Importing modules
-const Buyer = require("../model/buyer.js");
+const User = require("../model/user.js");
 const { generateOTP, sendSMS, sendEmail} = require("../utility/otp.js");
 const { generateJWT } = require("../utility/token.js");
 
 // <-------------------- Create New User -------------------->
-const createNewBuyer = async (req, res) => {
+const createNewUser = async (req, res) => {
     try {
       let { name, email, phone } = req.body;
 
       // Checking if phone number and email id already exits
-      const phoneExists = await Buyer.findOne({ phone });
-      const emailExists = await Buyer.findOne({ email });
+      const phoneExists = await User.findOne({ phone });
+      const emailExists = await User.findOne({ email });
       if (phoneExists) {
         res.status(400).json({
           message: "Phone number already registered",
@@ -30,41 +30,41 @@ const createNewBuyer = async (req, res) => {
         return;
       }
 
-      const newBuyer = new Buyer({
+      const newUser = new User({
         name,
         email,
         phone,
       });
 
-      // Saving buyer details in database
-      const buyer = await newBuyer.save();
+      // Saving user details in database
+      const user = await newUser.save();
       // Generating the OTP
       const phoneOtp = generateOTP(6);
       const emailOtp = generateOTP(6);
 
       // Saving the OTP in database
-      buyer.phoneOTP = phoneOtp;
-      buyer.emailOTP = emailOtp;
-      await buyer.save();
+      user.phoneOTP = phoneOtp;
+      user.emailOTP = emailOtp;
+      await user.save();
 
       // Sending the otp through sms
       await sendSMS({
         message: `Your OTP for registration is ${phoneOtp}`,
-        contactNumber: buyer.phone,
+        contactNumber: user.phone,
         phoneOtp
       });
 
       // Sending the otp through email
       await sendEmail ({
         message: `Dear ${name}, your OTP for registration is ${emailOtp}`,
-        emailId: buyer.email,
+        emailId: user.email,
       });
 
       // Sending a response back
       res.status(200).json({
         message: "OTPs sent to Email and Phone",
         data: {
-          buyerID: buyer._id,
+          userID: user._id,
         },
       });
     } catch(error) {
@@ -78,12 +78,12 @@ const createNewBuyer = async (req, res) => {
 // <-------------------- Phone OTP Verification -------------------->
 const verifyPhoneOTP = async (req, res) => {
   try {
-    // Finding the buyer
-    const { checkPhoneOTP, buyerID } = req.body;
-    const buyer = await Buyer.findById(buyerID);
+    // Finding the user
+    const { checkPhoneOTP, userID } = req.body;
+    const user = await User.findById(userID);
 
-    // Checking if buyer exists
-    if (!buyer) {
+    // Checking if user exists
+    if (!user) {
       res.status(400).json({
         message: "User not found"
       });
@@ -91,7 +91,7 @@ const verifyPhoneOTP = async (req, res) => {
     }
     
     // Verifying the OTP sent & entered by user
-    if (buyer.phoneOTP !== checkPhoneOTP) {
+    if (user.phoneOTP !== checkPhoneOTP) {
       res.status(400).json({
         message: "Incorrect OTP"
       });
@@ -99,11 +99,11 @@ const verifyPhoneOTP = async (req, res) => {
     };
     
     // Generating JWT 
-    const token = generateJWT({ buyerID: buyer._id });
+    const token = generateJWT({ userID: user._id });
     
     // Deleting used OTP from database
-    buyer.phoneOTP = "";
-    await buyer.save();
+    user.phoneOTP = "";
+    await user.save();
     
     // Verification display message
     res.status(201).json({
@@ -111,7 +111,7 @@ const verifyPhoneOTP = async (req, res) => {
       type: "success",
       data: {
         token,
-        buyer
+        user
       }
     });
   } catch (error) {
@@ -125,12 +125,12 @@ const verifyPhoneOTP = async (req, res) => {
 // <-------------------- Email OTP Verification -------------------->
 const verifyEmailOTP = async (req, res) => {
   try {
-    // Finding the buyer
-    const { checkEmailOTP, buyerID } = req.body;
-    const buyer = await Buyer.findById(buyerID);
+    // Finding the user
+    const { checkEmailOTP, userID } = req.body;
+    const user = await User.findById(userID);
 
-    // Checking if buyer exists
-    if (!buyer) {
+    // Checking if user exists
+    if (!user) {
       res.status(400).json({
         message: "User not found"
       });
@@ -138,18 +138,18 @@ const verifyEmailOTP = async (req, res) => {
     }
 
     // Verifying the OTP sent & entered by user
-    if (buyer.emailOTP !== checkEmailOTP) {
+    if (user.emailOTP !== checkEmailOTP) {
       res.status(400).json({
         message: "Incorrect OTP"
       });
     }
     
     // Generating JWT 
-    const token = generateJWT({ buyerID: buyer._id });
+    const token = generateJWT({ userID: user._id });
 
     // Deleting used OTP from database
-    buyer.emailOTP = "";
-    await buyer.save();
+    user.emailOTP = "";
+    await user.save();
 
     // Verification display message
     res.status(201).json({
@@ -157,7 +157,7 @@ const verifyEmailOTP = async (req, res) => {
       type: "success",
       data: {
         token,
-        buyer
+        user
       }
     });
   } catch (error) {
@@ -169,7 +169,7 @@ const verifyEmailOTP = async (req, res) => {
 
 // Exporting modules
 module.exports = {
-    createNewBuyer,
+    createNewUser,
     verifyPhoneOTP,
     verifyEmailOTP
 };
