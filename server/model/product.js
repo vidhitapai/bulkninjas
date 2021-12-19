@@ -19,6 +19,11 @@ const productSchema = new mongoose.Schema(
             maxlength: [10, "Character limit exceeded"]
         },
 
+        picture: {
+            type: Buffer,
+            required: true
+        },
+
         totalQuantity: {
             type: Number,
             trim: true,
