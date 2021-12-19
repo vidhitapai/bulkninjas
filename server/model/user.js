@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const validate = require("validator");
 
 // Creating the schema
-const buyerSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -33,16 +33,16 @@ const buyerSchema = new mongoose.Schema(
     },
 
     phoneOTP: {
-      type: Number,
+      type: String,
     },
     emailOTP: {
-      type: Number,
+      type: String,
     }
   },
   { timestamps: true }
 );
 
-const Buyer = mongoose.model('Buyer',buyerSchema);
+const User = mongoose.model('User',userSchema);
 
 // Exporting the module
-module.exports = Buyer;
+module.exports = User;
