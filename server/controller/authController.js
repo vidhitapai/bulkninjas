@@ -96,7 +96,7 @@ const verifyPhoneOTP = async (req, res) => {
         message: "Incorrect OTP"
       });
       return;
-    };
+    }
     
     // Generating JWT 
     const token = generateJWT({ userID: user._id });
