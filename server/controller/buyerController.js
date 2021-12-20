@@ -61,7 +61,23 @@ const placeOrder = async (req, res) => {
 
 const searchResults = async (req, res) => {
     try {
-        
+        const { query } = req.body;
+        // let results = [];
+        let nameMatches = [];
+        let categoryMatches = [];
+        nameMatches = await Product.find({ name: query });
+        categoryMatches = await Product.find({ category: query });
+        const results = nameMatches.concat(categoryMatches);
+        if (results.length === 0) {
+          res.status(201).json({
+            message: "No results found",
+          });
+        } else {
+          res.status(201).json({
+            message: results.length + " results found",
+            data: results,
+          });
+        }
     }
     catch (error) {
          res.status(400).json({
