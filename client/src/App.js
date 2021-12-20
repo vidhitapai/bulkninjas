@@ -1,24 +1,27 @@
-import React from "react";
-import logo from "./logo.svg";
+import { useState, useEffect } from "react";
+import { Navigation } from "./components/navigation";
+import { Header } from "./components/header";
+import JsonData from "./data/data.json";
+import SmoothScroll from "smooth-scroll";
 import "./App.css";
 
-function App() {
-  const [data, setData] = React.useState(null);
+export const scroll = new SmoothScroll('a[href*="#"]', {
+  speed: 1000,
+  speedAsDuration: true,
+});
 
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
+const App = () => {
+  const [landingPageData, setLandingPageData] = useState({});
+  useEffect(() => {
+    setLandingPageData(JsonData);
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
-      </header>
+    <div>
+      <Navigation />
+      <Header data={landingPageData.Header} />
     </div>
   );
-}
+};
 
 export default App;
