@@ -10,12 +10,14 @@ const PORT = process.env.PORT || 8001;
 
 // Importing routes
 const buyerRouter = require("./routes/buyerRoutes");
+const supplierRouter = require("./routes/supplierRoutes");
 
 // Formatting incoming data
 app.use(express.json());
 
 // Routes
 app.use("/buyer", buyerRouter);
+app.use("/supplier", supplierRouter);
 
 // Starting the server
 app.listen(PORT, () => {
