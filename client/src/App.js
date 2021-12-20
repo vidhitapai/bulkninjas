@@ -18,7 +18,7 @@ export const scroll = new SmoothScroll('a[href*="#"]', {
 });
 
 const App = () => {
-  
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <div>
@@ -26,11 +26,11 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Signup />} />
+        <Route path="/register" element={<Signup setLoggedIn={setLoggedIn} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/verificationsignup" element={<OtpSignup />} />
         <Route path="/verificationlogin" element={<OtpLogin />} />
-        <Route path="/userdashboard" element={<Search/>} />
+        <Route path="/search" element={<Search/>} />
         <Route path="/products" element={<Viewproducts image="https://images.unsplash.com/photo-1617503752587-97d2103a96ea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=786&q=80"/>} />
         
         </Routes>

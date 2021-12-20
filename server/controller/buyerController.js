@@ -70,7 +70,6 @@ const placeOrder = async (req, res) => {
 const searchResults = async (req, res) => {
     try {
         const { query } = req.body;
-        // let results = [];
 
         // Declaring arrays to store filtered products
         let nameMatches = [];
