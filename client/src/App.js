@@ -1,24 +1,31 @@
-import React from "react";
-import logo from "./logo.svg";
+import { useState, useEffect } from "react";
+import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
+import { Navigation } from "./components/navigation";
+import { Home } from "./components/Home";
+import SmoothScroll from "smooth-scroll";
 import "./App.css";
+import Signup from './components/Signup';
+// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
-  const [data, setData] = React.useState(null);
+export const scroll = new SmoothScroll('a[href*="#"]', {
+  speed: 1000,
+  speedAsDuration: true,
+});
 
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
+const App = () => {
+  
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
-      </header>
+    <div>
+      <Navigation />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Signup />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
