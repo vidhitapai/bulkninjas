@@ -1,10 +1,15 @@
 body {
     font-family: "Open Sans", sans-serif;
-    background-color: #fff0d5;
-    min-height: 100vh; }
+    /* background-color: #fff0d5; */
+    background-image: url("https://images.unsplash.com/photo-1438183972690-6d4658e3290e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.13);
+ }
   
   .brand-wrapper {
-    margin-bottom: 19px; }
+    margin-bottom: 19px;
+    margin-left: 30%; }
     .brand-wrapper .logo {
       height: 37px; }
   
@@ -12,7 +17,9 @@ body {
     border: 0;
     border-radius: 27.5px;
     box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
-    overflow: hidden; }
+    overflow: hidden;
+    margin-top: 15%;
+  padding: -10%; }
     .login-card-img {
       border-radius: 0;
       position: absolute;
@@ -21,8 +28,8 @@ body {
       -o-object-fit: cover;
          object-fit: cover; }
     .login-card .card-body {
-      margin-top: 150px;
-      padding: 80px 60px 60px; }
+      margin-top: 0px;
+      padding: 20px; }
       @media (max-width: 422px) {
         .login-card .card-body {
           padding: 35px 24px; } }
@@ -32,7 +39,8 @@ body {
       font-weight: normal;
       margin-bottom: 23px; }
     .login-card form {
-      max-width: 326px; }
+      max-width: 40%;
+      margin-left: 30%; }
     .login-card .form-control {
       border: 1px solid #d5dae2;
       padding: 15px 25px;
@@ -71,7 +79,8 @@ body {
     .login-card-footer-text {
       font-size: 16px;
       color: #0d2366;
-      margin-bottom: 60px; }
+      margin-bottom: 60px;
+      margin-left: 30%; }
       @media (max-width: 767px) {
         .login-card-footer-text {
           margin-bottom: 24px; } }
