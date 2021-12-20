@@ -1,6 +1,6 @@
 body {
     font-family: "Open Sans", sans-serif;
-    background-color: #d0d0ce;
+    background-color: #fff0d5;
     min-height: 100vh; }
   
   .brand-wrapper {
@@ -21,7 +21,8 @@ body {
       -o-object-fit: cover;
          object-fit: cover; }
     .login-card .card-body {
-      padding: 85px 60px 60px; }
+      margin-top: 150px;
+      padding: 80px 60px 60px; }
       @media (max-width: 422px) {
         .login-card .card-body {
           padding: 35px 24px; } }
@@ -79,4 +80,5 @@ body {
       color: #919aa3; }
   
   /*# sourceMappingURL=login.css.map */
+  
   
