@@ -292,10 +292,12 @@ const verifyUserLogin = async (req, res) => {
 }
 
 
-// <-------------------- User Login -------------------->
+// <-------------------- Verify GSTIN for supplier -------------------->
 const verifyGSTIN = async (req, res) => {
   try {
-    const gstnumber = req.body  ;
+    const gstnumber = req.body;
+
+    // Verifying GST Identification Number 
     gstAPI.verifyGST(gstnumber).then((data)=>{
       res.send(data);
     });
