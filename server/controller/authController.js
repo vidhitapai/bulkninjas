@@ -2,6 +2,8 @@
 const User = require("../model/user.js");
 const { generateOTP, sendSMS, sendEmail} = require("../utility/otp.js");
 const { generateJWT } = require("../utility/token.js");
+const dotenv = require("dotenv").config();
+const gstAPI = new (require("gst-verification"))(process.env.GSTIN_SECRET);
 
 // <-------------------- Create New User -------------------->
 const createNewUser = async (req, res) => {
@@ -290,11 +292,27 @@ const verifyUserLogin = async (req, res) => {
 }
 
 
+// <-------------------- User Login -------------------->
+const verifyGSTIN = async (req, res) => {
+  try {
+    const gstnumber = req.body  ;
+    gstAPI.verifyGST(gstnumber).then((data)=>{
+      res.send(data);
+    });
+  } catch (error) {
+      res.status(400).json({
+        message: error.message
+      });
+  }
+}
+
+
 // Exporting modules
 module.exports = {
     createNewUser,
     verifyPhoneOTP,
     verifyEmailOTP,
     userLogin,
-    verifyUserLogin
+    verifyUserLogin,
+    verifyGSTIN
 };
