@@ -67,7 +67,7 @@ const uploadProductPicture = async (req, res) => {
 const viewProducts = async (req, res) => {
     try {
         // Finding the user whose products are to be displayed
-        const userid = req.params.id
+        const userid = req.params.userid
         const sellerProducts = await Product.find({userID: userid});
 
         // Checking if products exist for user
@@ -91,10 +91,25 @@ const viewProducts = async (req, res) => {
 };
 
 
+// <-------------------- View Buyers buying particular Product -------------------->
+// ******To be checked after creating buyerRoutes******
+const viewBuyers = async (req, res) => {
+    try{
+        const productid = req.params.productid
+        const users = await Product.find({_id: productid});
+        res.send(users);
+    } catch (error) {
+        res.status(400).json({
+            message: error.message
+        });  
+    }
+};
+
 // Exporting modules
 module.exports = {
     createNewProductListing,
     upload,
     uploadProductPicture,
-    viewProducts
+    viewProducts,
+    viewBuyers
 }
