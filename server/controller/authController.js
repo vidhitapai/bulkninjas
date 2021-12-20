@@ -8,7 +8,7 @@ const gstAPI = new (require("gst-verification"))(process.env.GSTIN_SECRET);
 // <-------------------- Create New User -------------------->
 const createNewUser = async (req, res) => {
     try {
-      let { name, email, phone } = req.body;
+      let { name, email, phone, role, address, gstin } = req.body;
 
       // Checking if phone number and email id already exits
       const phoneExists = await User.findOne({ phone });
@@ -32,10 +32,24 @@ const createNewUser = async (req, res) => {
         return;
       }
 
-      const newUser = new User({
-        name,
-        email,
-        phone,
+      let data;
+      gstAPI.verifyGST(gstnumber).then((data)=>{
+        data = data;
+      });
+
+      if(data === NULL) {
+        res.status(400).json({
+          message: "Invalid GSTIN"
+        });
+      }
+
+      const newUser = new User({ 
+        name, 
+        email, 
+        phone, 
+        role, 
+        address,
+        gstin 
       });
 
       // Saving user details in database
@@ -293,20 +307,20 @@ const verifyUserLogin = async (req, res) => {
 
 
 // <-------------------- Verify GSTIN for supplier -------------------->
-const verifyGSTIN = async (req, res) => {
-  try {
-    const gstnumber = req.body;
+// const verifyGSTIN = async (req, res) => {
+//   try {
+//     const gstnumber = req.body;
 
-    // Verifying GST Identification Number 
-    gstAPI.verifyGST(gstnumber).then((data)=>{
-      res.send(data);
-    });
-  } catch (error) {
-      res.status(400).json({
-        message: error.message
-      });
-  }
-}
+//     // Verifying GST Identification Number 
+//     gstAPI.verifyGST(gstnumber).then((data)=>{
+//       res.send(data);
+//     });
+//   } catch (error) {
+//       res.status(400).json({
+//         message: error.message
+//       });
+//   }
+// }
 
 
 // Exporting modules

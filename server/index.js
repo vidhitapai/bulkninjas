@@ -17,9 +17,9 @@ const buyerRouter = require("./routes/buyerRoutes.js");
 app.use(express.json());
 app.use(cors());
 // Routes
-app.use("/user", authRouter);
-app.use("/supplier", supplierRouter);
-app.use("/buyer", buyerRouter);
+app.use("/api/user", authRouter);
+app.use("/api/supplier", supplierRouter);
+app.use("/api/buyer", buyerRouter);
 
 // Starting the server
 app.listen(PORT, () => {
