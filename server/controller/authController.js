@@ -8,7 +8,7 @@ const gstAPI = new (require("gst-verification"))(process.env.GSTIN_SECRET);
 // <-------------------- Create New User -------------------->
 const createNewUser = async (req, res) => {
     try {
-      let { name, email, phone, gstin, address } = req.body;
+      let { name, email, phone, role, address, gstin } = req.body;
 
       // Checking if phone number and email id already exits
       const phoneExists = await User.findOne({ phone });
@@ -47,8 +47,9 @@ const createNewUser = async (req, res) => {
         name, 
         email, 
         phone, 
-        gstin, 
-        address 
+        role, 
+        address,
+        gstin 
       });
 
       // Saving user details in database
