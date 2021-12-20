@@ -1,29 +1,29 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 import { Navigation } from "./components/navigation";
-import { Header } from "./components/header";
-import JsonData from "./data/data.json";
+import { Home } from "./components/Home";
 import SmoothScroll from "smooth-scroll";
 import "./App.css";
-import Signup from './components/signup.js';
+import Signup from './components/Signup';
+// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
 export const scroll = new SmoothScroll('a[href*="#"]', {
   speed: 1000,
   speedAsDuration: true,
 });
 
 const App = () => {
-  const [landingPageData, setLandingPageData] = useState({});
-  useEffect(() => {
-    setLandingPageData(JsonData);
-  }, []);
+  
 
   return (
     <div>
-      
       <Navigation />
-      <Signup/>
-      
-
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Signup />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };
