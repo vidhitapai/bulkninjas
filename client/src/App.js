@@ -1,26 +1,27 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import { Navigation } from "./components/navigation";
+import { Header } from "./components/header";
+import JsonData from "./data/data.json";
+import SmoothScroll from "smooth-scroll";
 import "./App.css";
-import { useState } from "react";
 
-// react-router-dom components
-import { Link } from "react-router-dom";
-import { ThemeProvider } from '@mui/material/styles';
-import theme from './theme/theme.js';
-// @mui material components
-import Card from "@mui/material/Card";
-import Checkbox from "@mui/material/Checkbox";
-import Navbar from "./components/Navbar.js"
-function App() {
+export const scroll = new SmoothScroll('a[href*="#"]', {
+  speed: 1000,
+  speedAsDuration: true,
+});
 
+const App = () => {
+  const [landingPageData, setLandingPageData] = useState({});
+  useEffect(() => {
+    setLandingPageData(JsonData);
+  }, []);
 
   return (
-    <div className="App">
-    <ThemeProvider theme={theme}>
-      <Navbar/>
-      
-      </ThemeProvider>
+    <div>
+      <Navigation />
+      <Header data={landingPageData.Header} />
     </div>
   );
-}
+};
 
 export default App;
