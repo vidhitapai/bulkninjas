@@ -12,7 +12,14 @@ const productSchema = new mongoose.Schema(
             maxlength: [50, "Character limit exceeded"]
         },
 
-        price: {
+        mrp: {
+            type: Number,
+            trim: true,
+            required: true,
+            maxlength: [10, "Character limit exceeded"]
+        },
+
+        discountedPrice: {
             type: Number,
             trim: true,
             required: true,
@@ -27,7 +34,8 @@ const productSchema = new mongoose.Schema(
             type: Number,
             trim: true,
             required: true,
-            maxlength: [10, "Character limit exceeded"]
+            maxlength: [10, "Character limit exceeded"],
+            min: 50
         },
         
         ordersPlaced: {

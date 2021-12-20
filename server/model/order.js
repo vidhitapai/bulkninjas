@@ -8,15 +8,14 @@ const orderSchema = new mongoose.Schema(
         totalPrice: {
             type: Number,
             trim: true,
-            required: true,
+            // required: true,
         },
 
         status: {
             type: String,
             trim: true,
-            required: true,
+            // required: true,
             enum: ["PLACED", "FULFILLED"],
-            default: "PLACED"
         },
 
         orderItems: [{
