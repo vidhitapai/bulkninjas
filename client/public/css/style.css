@@ -68,7 +68,7 @@ ol {
 
 /* Navigation */
 #menu {
-  padding-bottom: 5px;
+  padding-bottom: 13px;
   transition: all 0.8s;
 }
 #menu.navbar-default {

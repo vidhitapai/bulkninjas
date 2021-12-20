@@ -1,72 +1,49 @@
 import React from 'react';
-import { Form, Col, Row, Button, Card } from 'react-bootstrap';
-// import '../signup.css';
-import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import { InputGroup } from 'react-bootstrap';
+// import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../signup.css';
+
 function Signup() {
     return (
-      <Card style={{ width: "50rem" }}>
-        <Form>
-          <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
-            <Form.Label column sm={2}>
-              Email
-            </Form.Label>
-            <Col sm={10}>
-              <Form.Control type="email" placeholder="Email" />
-            </Col>
-          </Form.Group>
-
-          <Form.Group
-            as={Row}
-            className="mb-3"
-            controlId="formHorizontalPassword"
-          >
-            <Form.Label column sm={2}>
-              Password
-            </Form.Label>
-            <Col sm={10}>
-              <Form.Control type="password" placeholder="Password" />
-            </Col>
-          </Form.Group>
-          <fieldset>
-            <Form.Group as={Row} className="mb-3">
-              <Form.Label as="legend" column sm={2}>
-                Radios
-              </Form.Label>
-              <Col sm={10}>
-                <Form.Check
-                  type="radio"
-                  label="first radio"
-                  name="formHorizontalRadios"
-                  id="formHorizontalRadios1"
-                />
-                <Form.Check
-                  type="radio"
-                  label="second radio"
-                  name="formHorizontalRadios"
-                  id="formHorizontalRadios2"
-                />
-                <Form.Check
-                  type="radio"
-                  label="third radio"
-                  name="formHorizontalRadios"
-                  id="formHorizontalRadios3"
-                />
-              </Col>
-            </Form.Group>
-          </fieldset>
-          <Form.Group as={Row} className="mb-3" controlId="formHorizontalCheck">
-            <Col sm={{ span: 10, offset: 2 }}>
-              <Form.Check label="Remember me" />
-            </Col>
-          </Form.Group>
-
-          <Form.Group as={Row} className="mb-3">
-            <Col sm={{ span: 10, offset: 2 }}>
-              <Button type="submit">Sign in</Button>
-            </Col>
-          </Form.Group>
-        </Form>
-      </Card>
+      <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+      <div class="card login-card">
+          
+            <div class="card-body">
+              <div class="brand-wrapper">
+                <h2>Welcome User
+                  <h2>Create Your Account</h2>
+                  </h2>
+              </div>
+              <p class="login-card-description"></p>
+              <form action="#!">
+              <p>Are you a buyer or a seller?</p>
+              <InputGroup.Radio aria-label="Buyer" />
+              <InputGroup.Radio aria-label="Seller" />
+                <div class="form-group">
+                  <label for="Name" class="sr-only">Name</label>
+                  <input type="text" name="name" id="name" class="form-control" placeholder="Name" />
+                </div>
+                  <div class="form-group">
+                    <label for="email" class="sr-only">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Email address" />
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="password" class="sr-only">Phone Number</label>
+                    <input type="tel" name="phone" id="phone" class="form-control" placeholder="+91" />
+                  </div>
+                  <input name="getOTP" id="getOTP" class="btn btn-block login-btn mb-4" type="button" value="GET OTP" />
+                </form>
+                <p class="login-card-footer-text">Already Have an account? <a href="#!" class="text-reset">Log In</a></p>
+                <nav class="login-card-footer-nav">
+                </nav>
+            </div>
+          
+        
+      </div>
+      
+    </div>
+  </main>
     );
 }
 
