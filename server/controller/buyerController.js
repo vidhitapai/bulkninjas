@@ -59,7 +59,19 @@ const placeOrder = async (req, res) => {
     }
 }
 
+const searchResults = async (req, res) => {
+    try {
+        
+    }
+    catch (error) {
+         res.status(400).json({
+           message: error.message,
+         });
+    }
+}
+
 // Exporting modules
 module.exports = {
-    placeOrder
+    placeOrder,
+    searchResults
 };
