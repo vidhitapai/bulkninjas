@@ -8,7 +8,7 @@ const createNewProductListing = async (req, res) => {
     const newProduct = new Product(req.body);
     try {
         // Saving supplier's id in each product in database
-        newProduct.userID = req.params.id;
+        newProduct.userID = req.params.userid;
         await newProduct.save();
 
         // Display success message
@@ -42,7 +42,7 @@ const upload =  multer({
 const uploadProductPicture = async (req, res) => {
     try {
         // Finding product to upload picture for
-        const product = await Product.findById(req.params.id);
+        const product = await Product.findById(req.params.productid);
         
         // Formatting the uploaded file
         const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250 }).png().toBuffer();

@@ -13,7 +13,7 @@ const {
 router.post("/create/product/:userid", createNewProductListing);
 
 // Route to upload display picture for product
-router.post("/upload/product/picture/:userid", upload.single('picture'), uploadProductPicture);
+router.post("/upload/product/picture/:productid", upload.single('picture'), uploadProductPicture);
 
 // Route to view all products from a specific supplier
 router.get("/view/products/:userid", viewProducts);
