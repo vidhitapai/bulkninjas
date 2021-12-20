@@ -44,7 +44,12 @@ const productSchema = new mongoose.Schema(
 
         userID: {
             type: [mongoose.Schema.Types.ObjectId],
-            ref:'User'
+            ref: 'User'
+        },
+
+        orderID: {
+            type: [mongoose.Schema.Types.ObjectId],
+            ref: 'Order'
         }
 })
 

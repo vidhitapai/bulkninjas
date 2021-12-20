@@ -9,13 +9,15 @@ const app = express();
 const PORT = process.env.PORT || 8001;
 
 // Importing routes
-const buyerRouter = require("./routes/buyerRoutes");
+const authRouter = require("./routes/authRoutes.js");
+const supplierRouter = require("./routes/supplierRoutes.js");
 
 // Formatting incoming data
 app.use(express.json());
 
 // Routes
-app.use("/buyer", buyerRouter);
+app.use("/user", authRouter);
+app.use("/supplier", supplierRouter);
 
 // Starting the server
 app.listen(PORT, () => {
