@@ -272,7 +272,7 @@ const verifyUserLogin = async (req, res) => {
         // Finding the user
         const { checkOTP, userID } = req.body;
         const user = await User.findById(userID);
-
+        
         // Checking for incorrect OTP
         if (checkOTP !== user.phoneOTP && checkOTP !== user.emailOTP) {
             res.status(400).json({
