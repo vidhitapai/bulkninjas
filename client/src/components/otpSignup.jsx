@@ -15,7 +15,7 @@ function OtpSignup(props) {
         checkPhoneOTP: phoneOtp,
       });
       if (receivedData.data) {
-        if (done ===1) {
+        if (done === 1) {
           props.setUser(receivedData.data.user);
         }
         setDone(done+1);

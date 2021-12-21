@@ -52,7 +52,9 @@ const productSchema = new mongoose.Schema(
             required: true,
             maxlength: [20, "Character limit exceeded"]
         },
-
+        imgadd: {
+            type:String
+        },
         userID: {
             type: [mongoose.Schema.Types.ObjectId],
             ref: 'User'
