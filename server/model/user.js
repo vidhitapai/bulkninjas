@@ -54,8 +54,7 @@ const userSchema = new mongoose.Schema(
 
     gstin: {
       type: String,
-      maxLength: [15, "Number too long"],
-      minLength: [15, "Number too short"]
+      maxLength: [15, "Number too long"]
     }
   },
   { timestamps: true }
