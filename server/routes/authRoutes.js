@@ -7,8 +7,7 @@ const {
     verifyPhoneOTP,
     verifyEmailOTP,
     userLogin,
-    verifyUserLogin,
-    verifyGSTIN
+    verifyUserLogin
 } = require("../controller/authController.js");
 
 // Route to register a new user
@@ -25,9 +24,6 @@ router.post("/login", userLogin);
 
 //Route to verify user login
 router.post("/verifylogin", verifyUserLogin);
-
-// Route to verify the GST Identification Number
-router.post("/verify/gstin", verifyGSTIN);
 
 // Exporting modules
 module.exports = router;
