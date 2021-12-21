@@ -19,7 +19,6 @@ function Addproduct (props) {
     //    formData.append("artist", artistName);
     //    console.log(formData);
        
-    //    setUploaded(true);
       await productListing({
         name: name,
         mrp: price,
@@ -27,8 +26,9 @@ function Addproduct (props) {
         totalQuantity: quantity,
         category: category},
         props.user._id);
-     setUploaded(true);
-     console.log(photo);
+
+        setUploaded(true);
+        console.log(photo);
 }
 
 
@@ -77,15 +77,7 @@ function Addproduct (props) {
               }}
             />
           </Form.Group>
-          {/* <Form.Group controlId="formFile" className="mb-3">
-            <Form.Label>Add Photo of Product</Form.Label>
-          </Form.Group>
-          <Form.Control
-            type="file"
-            onChange={(event) => {
-              setPhoto(event.target.files[0]);
-            }}
-          /> */}
+          
           <Button type="submit">Add New Product</Button>
         </Form>
       </div>
