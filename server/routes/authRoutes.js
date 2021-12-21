@@ -7,7 +7,9 @@ const {
     verifyPhoneOTP,
     verifyEmailOTP,
     userLogin,
-    verifyUserLogin
+    verifyUserLogin,
+    updateUser,
+    deleteUser
 } = require("../controller/authController.js");
 
 // Route to register a new user
@@ -24,6 +26,12 @@ router.post("/login", userLogin);
 
 //Route to verify user login
 router.post("/verifylogin", verifyUserLogin);
+
+//Route to update user
+router.post("/update/:userid", updateUser);
+
+//Route to verify user login
+router.post("/delete/:userid", deleteUser);
 
 // Exporting modules
 module.exports = router;
