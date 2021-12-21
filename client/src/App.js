@@ -10,6 +10,8 @@ import OtpSignup from './components/otpSignup';
 import OtpLogin from './components/otpLogin';
 import Search from './components/Search';
 import Viewproducts from './components/Viewproducts';
+import Addproduct from "./components/Addproduct";
+
 // import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 export const scroll = new SmoothScroll('a[href*="#"]', {
@@ -20,7 +22,7 @@ export const scroll = new SmoothScroll('a[href*="#"]', {
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
-
+  
   return (
     <div>
       <Navigation />
