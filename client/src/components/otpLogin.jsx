@@ -12,7 +12,6 @@ function OtpLogin() {
               <div className="brand-wrapper">
                 <h2>
                   Verify OTP
-                  
                 </h2>
               </div>
               <p className="login-card-description"></p>
@@ -33,7 +32,6 @@ function OtpLogin() {
                     placeholder="Enter OTP"
                   />
                 </div>
-               
                 
                 <input
                   name="getOTP"

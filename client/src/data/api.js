@@ -17,10 +17,12 @@ export const signupPost = async (formData) => {
 };
 export const loginPost = async (formData) => {
   try {
-    const { data } = await axios.post(apiUrl + "login", formData);
+    const { data } = await axios.post(apiUrl + "user/login", formData);
     console.log(data);
+    if (data) {
+      return data;
+    }
 
-    return data;
   } catch (err) {
     throw err;
   }

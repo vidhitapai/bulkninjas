@@ -4,7 +4,7 @@ import { InputGroup } from 'react-bootstrap';
 import '../signup.css';
 import { signupPost } from "../data/api";
 import { authenticate } from "../data/authoriseFunctions";
-import { Redirect } from "react-router";
+import { Navigate } from "react-router";
 
 function Signup(props) {
 
@@ -14,14 +14,20 @@ function Signup(props) {
   const [address, setAddress] = useState("");
   const [gst, setGst] = useState("");
   const [role, setRole] = useState("Buyer")
- 
+  const [error, setError] = useState("");
   const sendSignupRequest = async () => {
     console.log({ name, phone, email, address, gst, role});
     const data = await signupPost({ name, phone, email, address, gst, role });
     console.log("Signing up done");
-    console.log(data, role);
-    props.setLoggedIn(true);
+    if (data.data) {
+      <Navigate to={{ pathname: "/verificationsignup" }} />;
+    } else {
+      setError(data.message);
+    }
+    
   };
+
+  
   
      return (
        <main className="d-flex align-items-center min-vh-100 py-3 py-md-0">
@@ -127,7 +133,7 @@ function Signup(props) {
                      </>
                    ) : null}
                  </div>
-
+                  <p>{error}</p>       
                  <input
                    name="getOTP"
                    id="getOTP"
