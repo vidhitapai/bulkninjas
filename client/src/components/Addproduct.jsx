@@ -24,7 +24,8 @@ function Addproduct (props) {
         mrp: price,
         discountedPrice: newPrice,
         totalQuantity: quantity,
-        category: category},
+        category: category,
+        imgadd: photo},
         props.user._id);
 
         setUploaded(true);

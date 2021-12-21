@@ -9,15 +9,18 @@ export const Navigation = (props) => {
             data-toggle="collapse"
             data-target="#bs-example-navbar-collapse-1"
           >
-          
             <span className="sr-only">Menu</span>
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
           </button>
           <a className="navbar-brand" href="/">
-            <img src="../images/logo.jpg" className="logo" alt="Bulk Ninjas Logo" />
-          </a>{' '}
+            <img
+              src="../images/logo.jpg"
+              className="logo"
+              alt="Bulk Ninjas Logo"
+            />
+          </a>{" "}
         </div>
 
         <div
@@ -38,6 +41,11 @@ export const Navigation = (props) => {
             <li>
               <a href="/register" className="page-scroll">
                 Register
+              </a>
+            </li>
+            <li>
+              <a href="/viewCart" className="page-scroll">
+                View Cart
               </a>
             </li>
           </ul>

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Navigate } from "react-router";
 import Productcard from './Productcard';
 
-function Search() {
+function Search(props) {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
     const searchProducts = async (event) => {
@@ -41,7 +41,7 @@ function Search() {
             </div>
           </div>
         ) : results.map((product) => {
-            return <Productcard mrp={product.mrp} totalQuantity={product.totalQuantity} discountedPrice={product.discountedPrice} name={product.name}/>
+            return <Productcard pid={product._id} mrp={product.mrp} totalQuantity={product.totalQuantity} discountedPrice={product.discountedPrice} name={product.name} product={product} cart={props.cart} setCart={props.setCart}/>
         })}
  
       </>
