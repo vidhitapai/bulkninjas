@@ -1,7 +1,7 @@
 // Importing modules
 const express = require("express");
 const db = require("./connection.js");
-
+const cors = require("cors");
 // Initialising express app
 const app = express();
 
@@ -15,7 +15,7 @@ const buyerRouter = require("./routes/buyerRoutes.js");
 
 // Formatting incoming data
 app.use(express.json());
-
+app.use(cors());
 // Routes
 app.use("/api/user", authRouter);
 app.use("/api/supplier", supplierRouter);
