@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = "http://localhost:8001/";
+const apiUrl = "http://localhost:8001/api/";
 
 export const signupPost = async (formData) => {
   try {
@@ -17,30 +17,50 @@ export const signupPost = async (formData) => {
 };
 export const loginPost = async (formData) => {
   try {
-    const { data } = await axios.post(apiUrl + "login", formData);
+    const { data } = await axios.post(apiUrl + "user/login", formData);
     console.log(data);
+    if (data) {
+      return data;
+    }
 
-    return data;
   } catch (err) {
     throw err;
   }
 };
 
-export const artistSignupPost = async (formData) => {
+export const verifyEmailOtp = async (formData) => {
   try {
-    const { data } = await axios.post(apiUrl + "artistSignup", formData);
+    const { data } = await axios.post(apiUrl + "user/authenticate/emailotp", formData);
     console.log(data);
-
-    return data;
+    if (data)
+    {return data};
   } catch (err) {
     throw err;
   }
 };
-export const artistLoginPost = async (formData) => {
+export const verifyPhoneOtp = async (formData) => {
   try {
-    const { data } = await axios.post(apiUrl + "artistLogin", formData);
+    const { data } = await axios.post( apiUrl + "user/authenticate/phoneotp",
+      formData
+    );
     console.log(data);
-    return data;
+    if (data) {
+      return data;
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+export const verifyLoginOtp = async (formData) => {
+  try {
+    const { data } = await axios.post(
+      apiUrl + "user/authenticate/verifyLogin",
+      formData
+    );
+    console.log(data);
+    if (data) {
+      return data;
+    }
   } catch (err) {
     throw err;
   }
