@@ -5,6 +5,7 @@ const { generateJWT } = require("../utility/token.js");
 const dotenv = require("dotenv").config();
 const gstAPI = new (require("gst-verification"))(process.env.GSTIN_SECRET);
 const validate = require("validator");
+const Product = require("../model/product.js");
 
 // <-------------------- Create New User -------------------->
 const createNewUser = async (req, res) => {
@@ -317,6 +318,62 @@ const verifyUserLogin = async (req, res) => {
 }
 
 
+// <-------------------- User Update -------------------->
+const updateUser = async (req, res) => {
+  try {
+      // Searching for the user with given id & updating
+      const user = await User.findByIdAndUpdate(req.params.userid, req.body, {new: true});
+      // Checking if user exists
+      if (!user) {
+          res.status(404).json({
+              message: "User does not exist"
+          });
+      } else {
+          res.status(201).json({
+              message: "User details updated",
+              data: user
+          });
+      }
+  } catch(error) {
+      res.status(400).json({
+          message: error.message
+      });
+  }
+};
+
+
+// <-------------------- User Delete -------------------->
+const deleteUser = async (req, res) => {
+  try {
+    // let user = await User.findById(req.params.userid); 
+
+    // if (user.role === "SUPPLIER") {
+    //   await Product.deleteMany({ userid: req.params.userid });
+    // } else if (user.role === "BUYER") {
+
+    // }
+
+    // Searching & deleting the user 
+    const user = await User.findByIdAndDelete(req.params.userid);
+
+    // Checking is user exists
+    if (!user) {
+        res.status(404).json({
+            message: "User does not exist"
+          });
+      } else {
+          res.status(201).json({
+              message: "User has been deleted"
+          });
+      }
+  } catch(error) {
+      res.status(400).json({
+          message: error.message
+      });
+  }
+};
+
+
 // <-------------------- Verify GSTIN for supplier -------------------->
 // const verifyGSTIN = async (req, res) => {
 //   try {
@@ -341,5 +398,7 @@ module.exports = {
     verifyEmailOTP,
     userLogin,
     verifyUserLogin,
+    updateUser,
+    deleteUser
     //verifyGSTIN
 };
