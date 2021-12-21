@@ -42,15 +42,15 @@ function Signup(props) {
                </div>
                <p className="login-card-description"></p>
                <form onSubmit={(event) => event.preventDefault()}>
-                 <p>Are you a buyer or a seller?</p>
-                 <label style={{ margin: "-5px 5px 0 0" }}>Buyer</label>
+                 <p id="para" >Are you a buyer or a seller?</p>
+                 <label className="lab1" style={{ margin: "-5px 5px 0 0" }}>Buyer</label>
                  <InputGroup.Radio
                    aria-label="Buyer"
                    value="Buyer"
                    name="ans"
                    onChange={(event) => setRole("Buyer")}
                  />
-                 <label style={{ margin: "-5px 5px 0 50px" }}>Seller</label>
+                 <label className="lab1" style={{ margin: "-5px 5px 0 50px" }}>Seller</label>
                  <InputGroup.Radio
                    aria-label="Seller"
                    value="Seller"
@@ -149,6 +149,7 @@ function Signup(props) {
                    Log In
                  </a>
                </p>
+               
                <nav className="login-card-footer-nav"></nav>
              </div>
            </div>

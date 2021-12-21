@@ -17,7 +17,7 @@ export const Navigation = (props) => {
           </button>
           <a className="navbar-brand" href="/">
             <img src="../images/logo.jpg" className="logo" alt="Bulk Ninjas Logo" />
-          </a>
+          </a>{' '}
         </div>
 
         <div
