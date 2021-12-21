@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 8001;
 const authRouter = require("./routes/authRoutes.js");
 const supplierRouter = require("./routes/supplierRoutes.js");
 const buyerRouter = require("./routes/buyerRoutes.js");
+const payment = require("./routes/paymentRoutes");
 
 // Formatting incoming data
 app.use(express.json());
@@ -20,6 +21,7 @@ app.use(cors());
 app.use("/api/user", authRouter);
 app.use("/api/supplier", supplierRouter);
 app.use("/api/buyer", buyerRouter);
+app.use("/api", payment);
 
 // Starting the server
 app.listen(PORT, () => {
