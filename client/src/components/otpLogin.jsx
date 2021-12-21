@@ -1,52 +1,73 @@
-import React from 'react';
-import { InputGroup } from 'react-bootstrap';
+import React, {useState} from 'react';
+import { verifyLoginOtp } from "../data/api";
+import { authenticate } from '../data/authoriseFunctions';
+import { Navigate } from "react-router";
 // import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../signup.css';
 
-function OtpLogin() {
+function OtpLogin(props) {
+  const [otp, setOtp] = useState("");
+  const [done, setDone] = useState(false);
+  const submitOtp = async (event) => {
+    const receivedData = await verifyLoginOtp({
+      userID: props.user.id,
+      checkOTP: otp,
+    });
+    if (receivedData.data) {
+      props.setUser(receivedData.data.user);
+      authenticate(props.user);
+      setDone(true);
+    } else {
+      console.log(receivedData.message);
+    }
+  };
+ 
     return (
-      <main className="d-flex align-items-center min-vh-100 py-3 py-md-0">
-        <div className="container">
-          <div className="card login-card">
-            <div className="card-body">
-              <div className="brand-wrapper">
-                <h2>
-                  Verify OTP
-                </h2>
+      <>
+        {done ? (
+          <Navigate to={{ pathname: "/search" }} />
+        ) : (
+          <main className="d-flex align-items-center min-vh-100 py-3 py-md-0">
+            <div className="container">
+              <div className="card login-card">
+                <div className="card-body">
+                  <div className="brand-wrapper">
+                    <h2>Verify OTP</h2>
+                  </div>
+                  <p className="login-card-description"></p>
+                  <form onSubmit={(event) => event.preventDefault()}>
+                    <div className="form-group"></div>
+                    <div className="form-group">
+                      <label for="Verify OTP" className="sr-only">
+                        Enter OTP
+                      </label>
+                      <input
+                        type="text"
+                        name="verify OTP"
+                        id="OTP"
+                        className="form-control"
+                        placeholder="Enter OTP"
+                        onChange={(event) => setOtp(event.target.value)}
+                      />
+                    </div>
+
+                    <input
+                      name="getOTP"
+                      id="getOTP"
+                      className="btn btn-block login-btn mb-4"
+                      type="button"
+                      value="GET OTP"
+                      onClick={submitOtp}
+                    />
+                  </form>
+
+                  <nav className="login-card-footer-nav"></nav>
+                </div>
               </div>
-              <p className="login-card-description"></p>
-              <form action="#!">
-               
-                <div className="form-group">
-                  
-                </div>
-                <div className="form-group">
-                  <label for="Verify OTP" className="sr-only">
-                    Enter OTP 
-                  </label>
-                  <input
-                    type="text"
-                    name="verify OTP"
-                    id="OTP"
-                    className="form-control"
-                    placeholder="Enter OTP"
-                  />
-                </div>
-                
-                <input
-                  name="getOTP"
-                  id="getOTP"
-                  className="btn btn-block login-btn mb-4"
-                  type="button"
-                  value="GET OTP"
-                />
-              </form>
-             
-              <nav className="login-card-footer-nav"></nav>
             </div>
-          </div>
-        </div>
-      </main>
+          </main>
+        )}
+      </>
     );
 }
 
