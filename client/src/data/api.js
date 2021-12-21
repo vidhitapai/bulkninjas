@@ -77,7 +77,6 @@ export const singleFileUpload = async (data) => {
 export const productListing = async (data, id) => {
   try {
     await axios.post(apiUrl + "create/product/" + id, data);
-    await axios.post(apiUrl + "singleFile", data);
   } catch (err) {
     throw err;
   }

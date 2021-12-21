@@ -5,7 +5,6 @@ function Productcard(props){
         <>
            <Card style={{ width: '35rem',
                           backgroundColor: 'white',
-                          
                           padding: '15px',
                           borderRadius: '10px',
                           margin: '6rem ',
@@ -23,16 +22,16 @@ function Productcard(props){
         <Table className="react-bs-container-body" >
             <thead>
                 <tr>
-                    <th>Product name</th>
+                    <th>{props.name}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><del>Price</del> </td>
-                    <td>Quantity </td>
+                    <td><del>{props.mrp}</del> </td>
+                    <td>{props.totalQuantity}</td>
                 </tr>
                 <tr>
-                    <td><b>New Price </b></td>
+                    <td><b>{props.discountedPrice}</b></td>
                     </tr>
             </tbody>
         </Table>
