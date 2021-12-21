@@ -10,7 +10,13 @@ body {
   margin-left: 35px;
   margin-top: 15px;
 }
-
+.form-control{
+  border: 1px solid;
+  border-radius: 10px;
+}
+.login-btn{
+  width: 20%;
+}
 .react-bs-container-body tr {
   border-top-style: hidden !important;
 }
