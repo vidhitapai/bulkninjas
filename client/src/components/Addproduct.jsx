@@ -22,7 +22,7 @@ onFormSubmit = e => {
 const Addproduct = () => {
 
 
-        }
+        
     return (
         <div>
         <Form className="addproduct" onSubmit={onFormSubmit}>
