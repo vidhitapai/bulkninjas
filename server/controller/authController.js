@@ -4,6 +4,7 @@ const { generateOTP, sendSMS, sendEmail} = require("../utility/otp.js");
 const { generateJWT } = require("../utility/token.js");
 const dotenv = require("dotenv").config();
 const gstAPI = new (require("gst-verification"))(process.env.GSTIN_SECRET);
+const validate = require("validator");
 
 // <-------------------- Create New User -------------------->
 const createNewUser = async (req, res) => {
@@ -32,17 +33,21 @@ const createNewUser = async (req, res) => {
         return;
       }
 
-      let data;
-      gstAPI.verifyGST(gstnumber).then((data)=>{
-        data = data;
-      });
-
-      if(data === NULL) {
-        res.status(400).json({
-          message: "Invalid GSTIN"
+      // Verifying the supplier's GST Identification Number
+      if(gstin !== "") {
+        let data;
+        gstAPI.verifyGST(gstin).then((data)=>{
+          data = data;
         });
+      
+        if(data === NULL) {
+          res.status(400).json({
+           message: "Invalid GSTIN"
+          });
+        }
       }
 
+      // Creating new user after verification
       const newUser = new User({ 
         name, 
         email, 
@@ -188,9 +193,15 @@ const verifyEmailOTP = async (req, res) => {
 const userLogin = async (req, res) => {
 	try {
         const { username } = req.body;
-
-        const user = await User.findOne({email: username});
-
+        let user;
+        
+        // Checking if user has chosen to enter email or phone
+        if (validate.isEmail(username)) {
+          user = await User.findOne({email: username});
+        } else {
+          user = await User.findOne({phone: username});
+        }
+      
         // Checking if user exists
         if (!user) {
             res.status(400).json({
@@ -330,5 +341,5 @@ module.exports = {
     verifyEmailOTP,
     userLogin,
     verifyUserLogin,
-    verifyGSTIN
+    //verifyGSTIN
 };
